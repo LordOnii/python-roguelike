@@ -23,12 +23,18 @@ tile_dt = np.dtype(
 
 def new_tile(
     *,  # Enforce the use of keywords, so that parameter order doesn't matter.
-    walkable: int,
-    transparent: int,
+    walkable: bool,
+    transparent: bool,
     dark: Tuple[int, Tuple[int, int, int], Tuple[int, int, int]],
 ) -> np.ndarray:
     """Helper function for defining individual tile types """
     return np.array((walkable, transparent, dark), dtype=tile_dt)
+
+default = new_tile(
+    walkable=False,
+    transparent=False,
+    dark=(ord(" "), (0, 0, 0), (0, 0, 0))
+)
 
 
 floor = new_tile(
